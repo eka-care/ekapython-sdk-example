@@ -7,8 +7,12 @@ AUDIO_FILE_LIST = [ "audio_file_1_path", "audio_file_2_path" ] # List of audio f
 TRANSACTION_ID = "unique_transaction_id"
 
 # --- Configuration Not Medentory ---
-ACTION_TYPE = "ekascribe"
-EXTRA_PARAMS = {"mode": "dictation"}
+ACTION_TYPE = "ekascribe-v2"
+EXTRA_PARAMS = {
+        "mode": "dictation",
+        "patient": {
+            "name": "John Doe",}
+        }
 
 def main():
     try:
@@ -55,7 +59,11 @@ def UPLOAD_AUDIO_FILES(client, audio_file_paths, transaction_id, action, extra_d
             file_paths=audio_file_paths, 
             txn_id=transaction_id, 
             action=action, 
-            extra_data=extra_data
+            extra_data=extra_data,
+            output_format = {
+                "input_language": ["en-IN"],
+                "output_template": [{"template_id": "eka_emr_template"}]
+            }
         )
         
         print("File upload API call successful. Responses:")
@@ -79,7 +87,7 @@ def UPLOAD_AUDIO_FILES(client, audio_file_paths, transaction_id, action, extra_d
 def GET_TRANSCRIPTION_RESULTS(client, session_id):
     print("=== V2RX Fetcher Example ===")
     try:
-        session_status = client.v2rx.get_session_status(session_id)
+        session_status = client.v2rx.get_session_status(session_id, ACTION_TYPE)
         print(f"Session Status: {session_status}")
 
     except Exception as e:

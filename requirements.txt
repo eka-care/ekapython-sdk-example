@@ -1,2 +1,2 @@
-ekacare==1.0.4
 requests==2.25.0
+ekacare==0.0.7
