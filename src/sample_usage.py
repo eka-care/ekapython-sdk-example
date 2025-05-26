@@ -5,8 +5,9 @@ CLIENT_ID = "your_client_id"
 CLIENT_SECRET = "your_client_secret"
 AUDIO_FILE_LIST = [ "audio_file_1_path", "audio_file_2_path" ] # List of audio files to upload
 TRANSACTION_ID = "unique_transaction_id"
+TEMPLATE_ID = "<Your template Id>"
 
-# --- Configuration Not Medentory ---
+# --- Configuration Not Mandatory ---
 ACTION_TYPE = "ekascribe-v2"
 EXTRA_PARAMS = {
         "mode": "dictation",
@@ -62,7 +63,7 @@ def UPLOAD_AUDIO_FILES(client, audio_file_paths, transaction_id, action, extra_d
             extra_data=extra_data,
             output_format = {
                 "input_language": ["en-IN"],
-                "output_template": [{"template_id": "eka_emr_template"}]
+                "output_template": [{"template_id": TEMPLATE_ID}]
             }
         )
         
