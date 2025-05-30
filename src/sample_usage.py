@@ -56,7 +56,7 @@ def UPLOAD_AUDIO_FILES(client, audio_file_paths, transaction_id, action, extra_d
     print("\n=== File Upload Example ===")
     
     try:
-        responses = client.files.upload(
+        responses = client.v2rx.upload(
             file_paths=audio_file_paths, 
             txn_id=transaction_id, 
             action=action, 
